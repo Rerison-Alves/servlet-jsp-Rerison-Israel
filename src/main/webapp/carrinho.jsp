@@ -7,7 +7,7 @@
 </head>
 <body>
 <h2>Adicionar Produto ao Carrinho</h2>
-<form action="Carrinho-servlet" method="post">
+<form action="Carrinho" method="post">
     <input type="text" name="produto" placeholder="Nome do Produto" required>
     <button type="submit">Adicionar</button>
 </form>
@@ -17,9 +17,12 @@
     <%
         ArrayList<String> carrinho = (ArrayList<String>) session.getAttribute("carrinho");
         if (carrinho != null && !carrinho.isEmpty()) {
-            for (String produto : carrinho) {
+            for (int i = 0; i < carrinho.size(); i++) {
     %>
-    <li><%= produto %></li>
+        <li>
+            <%= carrinho.get(i) %>
+            <a href="Carrinho?remover=<%= i %>"> ― </a>
+        </li>
     <%
         }
     } else {
